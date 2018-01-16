@@ -154,6 +154,8 @@ def binaryMask(frame, x0, y0, width, height ):
 #%%
 def Main():
     global guessGesture, visualize, mod, binaryMode, x0, y0, width, height, saveImg, gestname, path
+
+    stream_vid = False 
     quietMode = False
     
     font = cv2.FONT_HERSHEY_SIMPLEX
@@ -190,21 +192,27 @@ def Main():
         else:
             print "Get out of here!!!"
             return 0
-        
-    ## Grab camera input
-    cap = cv2.VideoCapture(0)
-    cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
+    if stream_vid:
+        ## Grab camera input
+        cap = cv2.VideoCapture(0)
+        cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
 
-    # set rt size as 640x480
-    ret = cap.set(3,640)
-    ret = cap.set(4,480)
+        # set rt size as 640x480
+        ret = cap.set(3,640)
+        ret = cap.set(4,480)
+    else:
+        pass
     
     while(True):
-        ret, frame = cap.read()
-        max_area = 0
-        
-        frame = cv2.flip(frame, 3)
-        
+        if stream_vid:
+            ret, frame = cap.read()
+            max_area = 0
+            frame = cv2.flip(frame, 3)
+        else:
+            ret = True
+            with open('example_frame_NParray.pkl', 'r') as f:
+                frame = np.load(f)
+
         if ret == True:
             if binaryMode == True:
                 roi = binaryMask(frame, x0, y0, width, height)

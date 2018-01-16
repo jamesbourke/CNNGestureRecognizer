@@ -213,12 +213,14 @@ def guessGesture(model, img):
     
     # Get the output with maximum probability
     import operator
-    
+    import json
+    with open('/home/james/Documents/LivePlot/sample.txt', 'w') as f:
+        json.dump(d, f) 
     guess = max(d.iteritems(), key=operator.itemgetter(1))[0]
     prob  = d[guess]
 
     if prob > 70.0:
-        #print guess + "  Probability: ", prob
+        print guess + "  Probability: ", prob
 
         #Enable this to save the predictions in a json file,
         #Which can be read by plotter app to plot bar graph
