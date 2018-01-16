@@ -1,0 +1,23 @@
+FROM ubuntu:16.04
+MAINTAINER Tictrac <developer@tictrac.com>
+
+EXPOSE 8080
+
+ENV TT_API_LISTEN_ADDR      "0.0.0.0"
+ENV TT_API_LISTEN_PORT      "8080"
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["server"]
+
+RUN mkdir -p /app/
+WORKDIR /app/
+
+RUN apt-get update && \
+    apt-get install -y graphviz python-tk python-dev python-pip
+
+RUN pip install -U pip
+
+COPY requirements.txt /app/
+COPY ori_4015imgs_weights.hdf5 /app/
+
+RUN pip install -r requirements.txt

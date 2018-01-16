@@ -1,0 +1,7 @@
+Django==1.11.7
+django-environ==0.4.4
+django-extensions==1.9.7
+psycopg2==2.7.3.2
+setuptools==31.0.0
+requests==2.18.4
+gunicorn==19.7.1

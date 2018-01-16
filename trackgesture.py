@@ -5,13 +5,14 @@ Created on Thu Mar  23 01:01:43 2017
 @author: abhisheksingh
 """
 
-#%%
-import cv2
-import numpy as np
 import os
 import time
 
-import gestureCNN as myNN
+# %%
+import cv2
+import numpy as np
+
+from cnn import gestureCNN as myNN
 
 minValue = 70
 
@@ -232,7 +233,8 @@ def Main():
         if not quietMode:
             cv2.imshow('Original',frame)
             cv2.imshow('ROI', roi)
-        
+            cv2.imwrite('orig.png', frame)
+
         # Keyboard inputs
         key = cv2.waitKey(10) & 0xff
         
