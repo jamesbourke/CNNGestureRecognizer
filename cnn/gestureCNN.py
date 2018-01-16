@@ -214,7 +214,7 @@ def guessGesture(model, img):
     # Get the output with maximum probability
     import operator
     import json
-    with open('/home/james/Documents/LivePlot/sample.txt', 'w') as f:
+    with open('/tmp/sample.txt', 'w') as f:
         json.dump(d, f) 
     guess = max(d.iteritems(), key=operator.itemgetter(1))[0]
     prob  = d[guess]

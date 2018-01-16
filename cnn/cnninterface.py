@@ -6,10 +6,10 @@ import gestureCNN as myNN
 
 minValue = 70
 
-x0 = 400
-y0 = 200
-height = 200
-width = 200
+x0 = 0
+y0 = 0
+height = 480
+width = 640
 
 kernel = np.ones((15, 15), np.uint8)
 kernel2 = np.ones((1, 1), np.uint8)

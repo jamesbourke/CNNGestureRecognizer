@@ -28,7 +28,7 @@ SECRET_KEY = 'dpb9g(nib&@&!l%3t3m6-2mz#di@d#xv-_l2pni_fp1os4v5v3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.17.0.1', 'hacker-games.tictrac.com']
+ALLOWED_HOSTS = ['172.17.0.1', 'hacker-games.tictrac.com', 'localhost']
 
 
 # Application definition

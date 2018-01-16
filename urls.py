@@ -20,6 +20,8 @@ from gesture import views
 
 urlpatterns = [
     url(r'^render/', views.render_image),
+    url(r'^process_image/', views.process_image),
     url(r'^upload/', views.upload_image),
+    url(r'^webcam/', views.webcam),
     url(r'^admin/', admin.site.urls),
 ]

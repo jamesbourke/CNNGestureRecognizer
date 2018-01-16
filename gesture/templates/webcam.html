@@ -1,0 +1,51 @@
+<html>
+<body>
+<video id="video" width="640" height="480" autoplay></video>
+<img src="" id="result">
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    // Put event listeners into place
+    window.addEventListener("DOMContentLoaded", function () {
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
+        var result = document.getElementById('result');
+        var mediaConfig = {video: true};
+
+        // Put video listeners into place
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(mediaConfig).then(function (stream) {
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+            });
+        }
+
+        function process_cam() {
+            var scale = 1;
+            var canvas = document.createElement("canvas");
+            canvas.width = video.videoWidth * scale;
+            canvas.height = video.videoHeight * scale;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            var imgData = canvas.toDataURL();
+
+            $.ajax({
+                url: "/process_image/",
+                type: "POST",
+                data: JSON.stringify({
+                    "img_data": imgData
+                }),
+                contentType: "application/json",
+                success: function(data){
+                    result.src = data['img_data'];
+                    setTimeout(process_cam, 200);
+                }
+            });
+        }
+        setTimeout(process_cam, 200);
+
+    }, false);
+
+</script>
+</html>
