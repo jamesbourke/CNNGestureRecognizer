@@ -39,11 +39,11 @@
                 contentType: "application/json",
                 success: function(data){
                     result.src = data['img_data'];
-                    setTimeout(process_cam, 200);
+                    setTimeout(process_cam, 0);
                 }
             });
         }
-        setTimeout(process_cam, 200);
+        setTimeout(process_cam, 0);
 
     }, false);
 
